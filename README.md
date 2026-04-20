@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMOREA - Formation Complète</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131a;
+  --surface2: #1c1c28;
+  --accent: #7c3aed;
+  --accent2: #06d6a0;
+  --text: #e8e8f0;
+  --muted: #7070a0;
+  --border: rgba(124,58,237,0.2);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* HEADER */
+header{
+  position:relative;
+  text-align:center;
+  padding:80px 20px 60px;
+  overflow:hidden;
+}
+header::before{
+  content:'';
+  position:absolute;inset:0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,58,237,0.25) 0%, transparent 70%);
+  pointer-events:none;
+}
+header h1{
+  font-size:clamp(3em,8vw,5.5em);
+  font-weight:800;
+  letter-spacing:-2px;
+  background:linear-gradient(135deg,#e8e8f0 30%,#7c3aed 70%,#06d6a0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+header p{
+  color:var(--muted);
+  font-size:1.1em;
+  margin-top:12px;
+  font-family:'Space Mono',monospace;
+  letter-spacing:1px;
+}
+
+/* NAV PILLS */
+.activities{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+  padding:0 20px 40px;
+  max-width:900px;
+  margin:0 auto;
+}
+.activity{
+  background:var(--surface);
+  color:var(--text);
+  padding:14px 28px;
+  border-radius:100px;
+  cursor:pointer;
+  border:1px solid var(--border);
+  font-family:'Space Mono',monospace;
+  font-size:0.85em;
+  letter-spacing:1px;
+  transition:all 0.25s;
+  text-transform:uppercase;
+}
+.activity:hover,.activity.active{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(124,58,237,0.35);
+}
+.activity.informatique-pill:hover,.activity.informatique-pill.active{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-color:var(--accent2);
+}
+
+/* FORMATION WRAPPER */
+.formation{
+  display:none;
+  max-width:860px;
+  margin:0 auto 60px;
+  padding:0 20px;
+  animation:fadeIn 0.4s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.formation h2{
+  font-size:2.2em;
+  font-weight:800;
+  margin-bottom:8px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+}
+.formation h2 span{font-size:0.45em;font-weight:400;color:var(--accent2);font-family:'Space Mono',monospace;vertical-align:middle;margin-left:12px;}
+
+/* PROGRESS BAR */
+.progress-wrap{margin:20px 0;display:flex;align-items:center;gap:12px;}
+.progress-bar{flex:1;height:4px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px;transition:width 0.4s ease;}
+.progress-label{font-family:'Space Mono',monospace;font-size:0.75em;color:var(--muted);white-space:nowrap;}
+
+/* MODULE */
+.module{display:none;animation:fadeIn 0.35s ease;}
+.module-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;}
+.module-num{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  width:44px;height:44px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:1em;
+  font-family:'Space Mono',monospace;
+  flex-shrink:0;
+}
+.module h3{font-size:1.5em;font-weight:800;line-height:1.2;}
+.module-desc{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px 24px;
+  margin-bottom:20px;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:0.97em;
+}
+.module-desc strong{color:var(--accent2);}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.step{
+  background:var(--surface2);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:12px;
+  padding:14px 18px;
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  transition:border-color 0.2s;
+}
+.step:hover{border-color:rgba(124,58,237,0.4);}
+.step-num{
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--accent);
+  width:28px;height:28px;
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Mono',monospace;
+  font-size:0.75em;
+  font-weight:700;
+  flex-shrink:0;
+}
+.step-text{line-height:1.6;font-size:0.95em;}
+.step-text code{
+  background:rgba(124,58,237,0.15);
+  color:var(--accent2);
+  padding:1px 6px;
+  border-radius:4px;
+  font-family:'Space Mono',monospace;
+  font-size:0.9em;
+}
+
+/* MINI PROJECT TAG */
+.mini-project{
+  border-left:3px solid var(--accent2);
+  background:rgba(6,214,160,0.07);
+  border-radius:0 12px 12px 0;
+  padding:14px 18px;
+  margin-bottom:24px;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+.mini-project-icon{font-size:1.4em;flex-shrink:0;}
+.mini-project-text strong{color:var(--accent2);font-size:0.8em;font-family:'Space Mono',monospace;letter-spacing:1px;display:block;margin-bottom:4px;}
+.mini-project-text span{font-size:0.95em;line-height:1.5;}
+
+/* NAV BUTTONS */
+.module-nav{display:flex;gap:12px;margin-top:10px;}
+button.next, button.prev{
+  font-family:'Space Mono',monospace;
+  font-size:0.8em;
+  letter-spacing:0.5px;
+  padding:12px 22px;
+  border-radius:100px;
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:all 0.25s;
+  text-transform:uppercase;
+}
+button.prev{background:var(--surface2);color:var(--muted);}
+button.prev:hover{background:var(--surface);color:var(--text);border-color:var(--muted);}
+button.next{background:var(--accent);color:#fff;border-color:var(--accent);}
+button.next:hover{background:#6d28d9;transform:translateY(-2px);box-shadow:0 6px 24px rgba(124,58,237,0.4);}
+
+/* FOOTER */
+footer{
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  text-align:center;
+  padding:30px 20px;
+  color:var(--muted);
+  font-family:'Space Mono',monospace;
+  font-size:0.8em;
+}
+footer a{color:var(--accent2);text-decoration:none;}
+
+/* ===== INFORMATIQUE SPECIFIC ===== */
+.info-badge{
+  display:inline-block;
+  background:rgba(6,214,160,0.12);
+  color:var(--accent2);
+  border:1px solid rgba(6,214,160,0.3);
+  border-radius:6px;
+  padding:3px 10px;
+  font-family:'Space Mono',monospace;
+  font-size:0.72em;
+  letter-spacing:1px;
+  margin-left:8px;
+  vertical-align:middle;
+}
+
+/* COMMENTAIRES */
+#commentaire textarea{
+  width:100%;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  color:var(--text);
+  font-family:'Syne',sans-serif;
+  font-size:0.95em;
+  resize:vertical;
+  outline:none;
+  margin-top:16px;
+  transition:border-color 0.2s;
+}
+#commentaire textarea:focus{border-color:var(--accent);}
+#commentaire input[type="submit"]{
+  font-family:'Space Mono',monospace;
+  font-size:0.8em;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:12px 28px;
+  border-radius:100px;
+  cursor:pointer;
+  margin-top:12px;
+  transition:all 0.25s;
+}
+#commentaire input[type="submit"]:hover{background:#6d28d9;transform:translateY(-2px);}
+#commentResult{color:var(--accent2);font-family:'Space Mono',monospace;font-size:0.85em;margin-top:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>COMOREA</h1>
+  <p>// L'art du savoir — Formations détaillées pour apprendre comme un pro</p>
+</header>
+
+<div class="activities">
+  <div class="activity" onclick="showFormation('bureautique',this)">Bureautique</div>
+  <div class="activity informatique-pill" onclick="showFormation('informatique',this)">💻 Informatique</div>
+  <div class="activity" onclick="showFormation('robotique',this)">Robotique</div>
+  <div class="activity" onclick="showFormation('animation',this)">Animation</div>
+  <div class="activity" onclick="showFormation('programmation',this)">Programmation</div>
+  <div class="activity" onclick="showFormation('design',this)">Design</div>
+  <div class="activity" onclick="showFormation('commentaire',this)">Commentaires</div>
+</div>
+
+<!-- ================= INFORMATIQUE ================= -->
+<div id="informatique" class="formation">
+  <h2>Informatique <span>10 Modules • Complet</span></h2>
+
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="info-progress" style="width:10%"></div></div>
+    <div class="progress-label" id="info-progress-label">Module 1 / 10</div>
+  </div>
+
+  <!-- MODULE 1 -->
+  <div class="module" id="informatique-module1">
+    <div class="module-header">
+      <div class="module-num">01</div>
+      <h3>Introduction à l'informatique <span class="info-badge">DÉBUTANT</span></h3>
+    </div>
+    <div class="module-desc">
+      Comprendre ce qu'est un ordinateur, son fonctionnement interne et le vocabulaire de base de l'informatique. Ce module pose les bases essentielles pour toute la suite du parcours.
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Définition de l'informatique : science du traitement automatique de l'information. Comprendre la notion de données (<em>data</em>) et de programme.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Les composants physiques (<strong>hardware</strong>) : processeur (CPU), mémoire vive (RAM), disque dur (HDD/SSD), carte mère, carte graphique (GPU), alimentation.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Les logiciels (<strong>software</strong>) : système d'exploitation (Windows, Linux, macOS), applications, drivers. Différence hardware vs software.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Le cycle de traitement : <code>Entrée → Traitement → Sortie → Stockage</code>. Exemples concrets avec clavier, CPU, écran.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Les unités de mesure : bit, octet (byte), Ko, Mo, Go, To. Calculs de conversion et exemples pratiques (photos, vidéos, etc.).</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Les types d'ordinateurs : PC de bureau, laptop, serveur, tablette, microcontrôleur. Cas d'utilisation de chacun.</div></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-icon">🎯</div>
+      <div class="mini-project-text">
+        <strong>Mini-Projet</strong>
+        <span>Dresser une fiche descriptive complète d'un ordinateur réel : identifier et nommer tous les composants visibles, noter les caractéristiques (RAM, stockage, processeur) et calculer la capacité totale en Go.</span>
+      </div>
+    </div>
+    <div class="module-nav">
+      <button class="next" onclick="nextModule('informatique',1,2)">Suivant → Module 2</button>
+    </div>
+  </div>
+
+  <!-- MODULE 2 -->
+  <div class="module" id="informatique-module2">
+    <div class="module-header">
+      <div class="module-num">02</div>
+      <h3>Systèmes d'exploitation <span class="info-badge">DÉBUTANT</span></h3>
+    </div>
+    <div class="module-desc">
+      Maîtriser l'interface et les fonctions fondamentales d'un système d'exploitation. Apprendre à gérer fichiers, dossiers, paramètres et raccourcis pour travailler efficacement au quotidien.
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Rôle d'un OS : gestion du matériel, des processus, des fichiers et des utilisateurs. Présentation de Windows 10/11, Ubuntu Linux, macOS.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Bureau, barre des tâches, gestionnaire de fichiers. Navigation dans l'arborescence : <code>C:\Users\</code> (Windows) ou <code>/home/</code> (Linux).</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Créer, renommer, déplacer, copier, supprimer des fichiers et dossiers. Comprendre les extensions de fichiers : <code>.txt</code>, <code>.pdf</code>, <code>.jpg</code>, <code>.exe</code>, etc.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Panneau de configuration / Paramètres : résolution d'écran, comptes utilisateurs, mises à jour, gestion des applications installées.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Raccourcis clavier indispensables : <code>Ctrl+C/V/X/Z</code>, <code>Alt+Tab</code>, <code>Win+E</code>, <code>Ctrl+Alt+Del</code>. Augmente la productivité de 40%.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Gestionnaire des tâches : surveiller CPU, RAM, disque. Terminer un processus bloqué. Identifier les programmes qui ralentissent le PC.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-text">Introduction au terminal / invite de commandes : commandes <code>cd</code>, <code>ls</code>/<code>dir</code>, <code>mkdir</code>, <code>del</code>/<code>rm</code>. Puissance de la ligne de commande.</div></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-icon">🎯</div>
+      <div class="mini-project-text">
+        <strong>Mini-Projet</strong>
+        <span>Organiser un espace de travail complet : créer une arborescence de dossiers (Travail &gt; Projets &gt; [Année] &gt; [Mois]), y placer des fichiers types, puis réaliser les mêmes opérations en ligne de commande.</span>
+      </div>
+    </div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('informatique',2,1)">← Précédent</button>
+      <button class="next" onclick="nextModule('informatique',2,3)">Suivant → Module 3</button>
+    </div>
+  </div>
+
+  <!-- MODULE 3 -->
+  <div class="module" id="informatique-module3">
+    <div class="module-header">
+      <div class="module-num">03</div>
+      <h3>Internet & Réseaux <span class="info-badge">DÉBUTANT</span></h3>
+    </div>
+    <div class="module-desc">
+      Comprendre comment fonctionne Internet, les protocoles de communication, les adresses IP, et naviguer de manière efficace et sécurisée sur le Web.
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Qu'est-ce qu'un réseau ? LAN (réseau local), WAN (réseau étendu), Internet. Notion de client/serveur. Comment les données voyagent en paquets.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Adresse IP : IPv4 (<code>192.168.1.1</code>) et IPv6. Adresse MAC. Rôle du routeur, du modem, du switch. Connexion Wi-Fi vs Ethernet.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Protocoles essentiels : <code>HTTP/HTTPS</code>, <code>FTP</code>, <code>DNS</code>, <code>DHCP</code>. Comment un navigateur charge une page web (DNS → IP → TCP → HTML).</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Les navigateurs web : Chrome, Firefox, Edge. Onglets, favoris, historique, mode privé. Moteurs de recherche et opérateurs avancés (<code>"", site:, filetype:</code>).</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Sécurité en ligne : reconnaître HTTPS (cadenas), phishing, mots de passe forts, double authentification (2FA). Gestionnaires de mots de passe.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Email professionnel : rédiger, CC/BCC, pièces jointes, signatures. Différence Gmail, Outlook, Thunderbird. Organiser sa boîte mail avec des filtres et dossiers.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-text">Cloud computing : Google Drive, OneDrive, Dropbox. Synchronisation, partage de fichiers, accès multi-appareils. Avantages du cloud vs stockage local.</div></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-icon">🎯</div>
+      <div class="mini-project-text">
+        <strong>Mini-Projet</strong>
+        <span>Configurer un environnement numérique personnel : créer un compte email professionnel, organiser sa boîte mail, stocker 5 documents importants sur le cloud et les partager avec un lien, puis tester sa connexion réseau avec <code>ping</code> et <code>ipconfig</code>.</span>
+      </div>
+    </div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('informatique',3,2)">← Précédent</button>
+      <button class="next" onclick="nextModule('informatique',3,4)">Suivant → Module 4</button>
+    </div>
+  </div>
+
+  <!-- MODULE 4 -->
+  <div class="module" id="informatique-module4">
+    <div class="module-header">
+      <div class="module-num">04</div>
+      <h3>HTML & CSS — Bases du Web <span class="info-badge">INTERMÉDIAIRE</span></h3>
+    </div>
+    <div class="module-desc">
+      Créer vos premières pages web avec HTML pour la structure et CSS pour le style. Comprendre comment les sites internet sont construits de zéro, sans framework.
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Structure d'un document HTML : <code>&lt;!DOCTYPE html&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>. Balises sémantiques : <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Texte et liens : <code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;a href=""&gt;</code>. Images : <code>&lt;img src="" alt=""&gt;</code>. Listes : <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Formulaires HTML : <code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;button&gt;</code>. Attributs <code>type</code>, <code>name</code>, <code>placeholder</code>, <code>required</code>.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">CSS — sélecteurs : tag, <code>.classe</code>, <code>#id</code>, combinateurs. Propriétés fondamentales : <code>color</code>, <code>background</code>, <code>font-size</code>, <code>margin</code>, <code>padding</code>, <code>border</code>.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Le modèle de boîte (box model) : <code>content → padding → border → margin</code>. <code>box-sizing: border-box</code>. Positionnement : <code>static</code>, <code>relative</code>, <code>absolute</code>, <code>fixed</code>.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Mise en page moderne : Flexbox (<code>display:flex</code>, <code>justify-content</code>, <code>align-items</code>) et CSS Grid (<code>display:grid</code>, <code>grid-template-columns</code>). Responsive design avec <code>@media</code>.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-text">Variables CSS (<code>:root</code>), animations CSS (<code>@keyframes</code>, <code>transition</code>), pseudo-classes (<code>:hover</code>, <code>:focus</code>) et pseudo-éléments (<code>::before</code>, <code>::after</code>).</div></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-icon">🎯</div>
+      <div class="mini-project-text">
+        <strong>Mini-Projet</strong>
+        <span>Créer une page de portfolio personnel complète : une section hero avec nom et présentation, une grille de compétences en CSS Grid, un formulaire de contact fonctionnel, et un design responsive qui s'adapte au mobile et au desktop.</span>
+      </div>
+    </div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('informatique',4,3)">← Précédent</button>
+      <button class="next" onclick="nextModule('informatique',4,5)">Suivant → Module 5</button>
+    </div>
+  </div>
+
+  <!-- MODULE 5 -->
+  <div class="module" id="informatique-module5">
+    <div class="module-header">
+      <div class="module-num">05</div>
+      <h3>JavaScript — Programmation Web <span class="info-badge">INTERMÉDIAIRE</span></h3>
+    </div>
+    <div class="module-desc">
+      Rendre vos pages web interactives et dynamiques avec JavaScript. Du DOM à la manipulation d'événements, en passant par les APIs, ce module est la clé pour créer des sites vivants.
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Bases du JS : variables (<code>var</code>, <code>let</code>, <code>const</code>), types (<code>string</code>, <code>number</code>, <code>boolean</code>, <code>null</code>, <code>undefined</code>), opérateurs. <code>console.log()</code> pour déboguer.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Structures de contrôle : <code>if/else</code>, <code>switch</code>, boucles <code>for</code>, <code>while</code>, <code>for...of</code>. Fonctions : déclaration, paramètres, <code>return</code>, fonctions fléchées (<code>=></code>).</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Tableaux et objets : <code>.push()</code>, <code>.map()</code>, <code>.filter()</code>, <code>.reduce()</code>. Manipulation d'objets : accès propriétés, déstructuration, spread operator <code>...</code>.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Le DOM (Document Object Model) : <code>document.getElementById()</code>, <code>querySelector()</code>. Modifier contenu (<code>innerHTML</code>, <code>textContent</code>), style (<code>style.color</code>), classes (<code>classList</code>).</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Événements : <code>addEventListener('click', fn)</code>, <code>'input'</code>, <code>'submit'</code>, <code>'keydown'</code>. Objet <code>event</code>, <code>preventDefault()</code>. Délégation d'événements.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">JavaScript asynchrone : <code>setTimeout</code>, <code>setInterval</code>. Promises (<code>.then().catch()</code>). <code>async/await</code>. Fetch API pour charger des données JSON depuis une URL.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-text">LocalStorage : <code>localStorage.setItem()</code>, <code>getItem()</code>, <code>removeItem()</code>. Sauvegarder et récupérer des données côté navigateur. JSON.stringify / JSON.parse.</div></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-icon">🎯</div>
+      <div class="mini-project-text">
+        <strong>Mini-Projet</strong>
+        <span>Créer une application "Liste de tâches" (To-Do List) complète : ajouter/supprimer/cocher des tâches, filtrer par statut, sauvegarder dans LocalStorage pour que les données persistent après rechargement. Interface stylée avec CSS.</span>
+      </div>
+    </div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('informatique',5,4)">← Précédent</button>
+      <button class="next" onclick="nextModule('informatique',5,6)">Suivant → Module 6</button>
+    </div>
+  </div>
+
+  <!-- MODULE 6 -->
+  <div class="module" id="informatique-module6">
+    <div class="module-header">
+      <div class="module-num">06</div>
+      <h3>Bases de données & SQL <span class="info-badge">INTERMÉDIAIRE</span></h3>
+    </div>
+    <div class="module-desc">
+      Comprendre comment les données sont organisées, stockées et interrogées. SQL est le langage universel des bases de données relationnelles, utilisé dans presque toutes les applications.
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Qu'est-ce qu'une base de données ? Base de données relationnelle vs NoSQL. Notions de table, ligne (enregistrement), colonne (champ), clé primaire, clé étrangère.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Installation de SQLite ou MySQL. Créer une base de données et une table : <code>CREATE DATABASE</code>, <code>CREATE TABLE</code> avec types (<code>INT</code>, <code>VARCHAR</code>, <code>TEXT</code>, <code>DATE</code>, <code>BOOLEAN</code>).</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Opérations CRUD : <code>INSERT INTO</code>, <code>SELECT * FROM</code>, <code>UPDATE ... SET</code>, <code>DELETE FROM</code>. Clause <code>WHERE</code>, <code>ORDER BY</code>, <code>LIMIT</code>.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Requêtes avancées : <code>JOIN</code> (INNER, LEFT, RIGHT) pour relier plusieurs tables. <code>GROUP BY</code>, <code>HAVING</code>. Fonctions d'agrégation : <code>COUNT()</code>, <code>SUM()</code>, <code>AVG()</code>, <code>MAX()</code>, <code>MIN()</code>.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Index et performances : pourquoi créer un <code>INDEX</code>. <code>EXPLAIN</code> pour analyser une requête. Normalisation : 1NF, 2NF, 3NF pour éviter la redondance.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Introduction aux bases NoSQL : MongoDB (documents JSON), comparaison avec SQL. Quand choisir l'un ou l'autre selon le projet.</div></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-icon">🎯</div>
+      <div class="mini-project-text">
+        <strong>Mini-Projet</strong>
+        <span>Concevoir et créer une base de données pour une bibliothèque scolaire : tables Livres, Auteurs, Élèves, Emprunts. Relier les tables avec des clés étrangères, insérer 10 enregistrements par table, puis écrire des requêtes pour afficher les livres empruntés, les élèves en retard, et les auteurs les plus populaires.</span>
+      </div>
+    </div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('informatique',6,5)">← Précédent</button>
+      <button class="next" onclick="nextModule('informatique',6,7)">Suivant → Module 7</button>
+    </div>
+  </div>
+
+  <!-- MODULE 7 -->
+  <div class="module" id="informatique-module7">
+    <div class="module-header">
+      <div class="module-num">07</div>
+      <h3>Python pour l'Informatique <span class="info-badge">AVANCÉ</span></h3>
+    </div>
+    <div class="module-desc">
+      Python est le langage polyvalent par excellence : scripts d'automatisation, traitement de données, intelligence artificielle. Ce module applique Python à des cas concrets informatiques.
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Révision rapide Python : variables, listes, dictionnaires, boucles, fonctions, modules. Installation de <code>pip</code> et gestion des bibliothèques avec <code>pip install</code>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Manipulation de fichiers : lire/écrire <code>.txt</code>, <code>.csv</code> avec le module <code>csv</code>, <code>.json</code> avec <code>json</code>. Parcourir des dossiers avec <code>os</code> et <code>pathlib</code>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Automatisation : renommer des fichiers en masse, trier par extension, créer des sauvegardes automatiques avec <code>shutil</code>. Scheduler des tâches avec <code>schedule</code>.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Requêtes Web avec Python : <code>requests</code> pour appeler des APIs REST. Parser du JSON. Web scraping avec <code>BeautifulSoup</code> : extraire des données de pages HTML.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Analyse de données : <code>pandas</code> pour manipuler des tableaux CSV, filtrer, trier, grouper. <code>matplotlib</code> pour créer des graphiques (courbes, barres, camemberts).</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Introduction à l'IA avec Python : <code>scikit-learn</code>, notions de Machine Learning (régression, classification). Entraîner un modèle simple sur un dataset réel.</div></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-icon">🎯</div>
+      <div class="mini-project-text">
+        <strong>Mini-Projet</strong>
+        <span>Créer un script d'automatisation qui : surveille un dossier de téléchargements, trie automatiquement les fichiers par type (images, PDF, vidéos), génère un rapport CSV quotidien des fichiers traités, et envoie un résumé par email avec <code>smtplib</code>.</span>
+      </div>
+    </div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('informatique',7,6)">← Précédent</button>
+      <button class="next" onclick="nextModule('informatique',7,8)">Suivant → Module 8</button>
+    </div>
+  </div>
+
+  <!-- MODULE 8 -->
+  <div class="module" id="informatique-module8">
+    <div class="module-header">
+      <div class="module-num">08</div>
+      <h3>Cybersécurité & Protection des données <span class="info-badge">AVANCÉ</span></h3>
+    </div>
+    <div class="module-desc">
+      Comprendre les menaces informatiques modernes, protéger ses systèmes et ses données personnelles. Ce module couvre les bonnes pratiques indispensables pour tout utilisateur ou professionnel du numérique.
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Les principales menaces : virus, malware, ransomware, spyware, adware, cheval de Troie. Comment ils se propagent (email, téléchargement, USB, réseau).</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Attaques courantes : phishing, spear phishing, man-in-the-middle, injection SQL, XSS (Cross-Site Scripting), brute force. Exemples réels et comment les reconnaître.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Mots de passe : règles d'un mot de passe fort (12+ caractères, majuscule, chiffre, symbole). Gestionnaires de mots de passe (Bitwarden, 1Password). Double authentification (TOTP, SMS, clé physique).</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Chiffrement : symétrique (AES) vs asymétrique (RSA). HTTPS et certificats SSL/TLS. Chiffrer ses fichiers avec VeraCrypt ou BitLocker. VPN : rôle et limites.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Sécurité réseau : firewall (pare-feu), DMZ, segmentation réseau. Scan de ports avec <code>nmap</code>. Analyser le trafic réseau avec Wireshark (introduction).</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Règlementation et éthique : RGPD (Europe), protection des données personnelles, droits des utilisateurs. Différence hacker éthique (white hat) vs malveillant (black hat). Bug bounty.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-text">Plan de réponse aux incidents : que faire si on est hacké ? Isoler, analyser, restaurer, signaler. Importance des sauvegardes 3-2-1 (3 copies, 2 supports, 1 hors site).</div></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-icon">🎯</div>
+      <div class="mini-project-text">
+        <strong>Mini-Projet</strong>
+        <span>Réaliser un audit de sécurité personnel : vérifier si ses emails ont été compromis (haveibeenpwned.com), changer tous les mots de passe faibles, activer la 2FA sur ses comptes principaux, chiffrer un dossier sensible avec VeraCrypt, et rédiger une charte de sécurité numérique personnelle.</span>
+      </div>
+    </div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('informatique',8,7)">← Précédent</button>
+      <button class="next" onclick="nextModule('informatique',8,9)">Suivant → Module 9</button>
+    </div>
+  </div>
+
+  <!-- MODULE 9 -->
+  <div class="module" id="informatique-module9">
+    <div class="module-header">
+      <div class="module-num">09</div>
+      <h3>Maintenance & Dépannage informatique <span class="info-badge">AVANCÉ</span></h3>
+    </div>
+    <div class="module-desc">
+      Savoir diagnostiquer et résoudre les pannes matérielles et logicielles. Maintenir un ordinateur en bonne santé, optimiser ses performances et gérer les mises à jour système.
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Diagnostic de panne : méthode de déduction (quoi ? quand ? comment ?). Lecture des messages d'erreur (BSOD Windows, kernel panic Linux). Journaux système (Event Viewer, <code>journalctl</code>).</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Maintenance préventive : nettoyage physique (poussière, ventilateurs), renouvellement de la pâte thermique, vérification des températures avec HWMonitor ou <code>sensors</code>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Optimisation logicielle : désactiver les démarrages automatiques, nettoyer le registre Windows (CCleaner), défragmenter un HDD, TRIM sur SSD. Libérer l'espace disque.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Gestion des drivers : mettre à jour les pilotes (GPU, réseau, son). Résoudre les conflits de drivers. Utiliser le mode sans échec pour déboguer.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Réinstallation du système : créer une clé USB bootable (Rufus), partitionner le disque, installer Windows/Ubuntu proprement, restaurer ses données depuis une sauvegarde.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Résolution de problèmes réseau : <code>ping</code>, <code>tracert</code>/<code>traceroute</code>, <code>ipconfig</code>/<code>ifconfig</code>, <code>nslookup</code>. Réinitialiser la pile TCP/IP. Configurer une IP fixe.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-text">Virtualisation : créer et gérer des machines virtuelles avec VirtualBox ou VMware. Utiliser des snapshots pour tester sans risque. Comprendre les conteneurs Docker (introduction).</div></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-icon">🎯</div>
+      <div class="mini-project-text">
+        <strong>Mini-Projet</strong>
+        <span>Créer une machine virtuelle Ubuntu avec VirtualBox, installer un serveur web Apache dessus (<code>sudo apt install apache2</code>), configurer une page HTML personnalisée accessible depuis l'hôte via l'adresse IP de la VM. Documenter toutes les étapes dans un rapport de maintenance.</span>
+      </div>
+    </div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('informatique',9,8)">← Précédent</button>
+      <button class="next" onclick="nextModule('informatique',9,10)">Suivant → Module 10</button>
+    </div>
+  </div>
+
+  <!-- MODULE 10 -->
+  <div class="module" id="informatique-module10">
+    <div class="module-header">
+      <div class="module-num">10</div>
+      <h3>Projet Final — Application Web Complète <span class="info-badge">EXPERT</span></h3>
+    </div>
+    <div class="module-desc">
+      Mettre en pratique TOUS les concepts du parcours en créant une application web complète de A à Z : front-end, back-end, base de données, sécurité, déploiement. C'est votre chef-d'œuvre.
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Conception :</strong> définir les fonctionnalités, créer les wireframes (Figma ou papier), modéliser la base de données (schéma entité-relation), choisir la stack technique.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Base de données :</strong> créer les tables SQL (utilisateurs, contenus, etc.), relations, index. Rédiger les requêtes CRUD. Préparer les données de test.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Back-end :</strong> créer une API REST simple avec Python (Flask) ou Node.js (Express). Endpoints : <code>GET /articles</code>, <code>POST /articles</code>, <code>PUT /articles/:id</code>, <code>DELETE /articles/:id</code>.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Front-end :</strong> interface HTML/CSS/JS responsive. Consommer l'API avec <code>fetch()</code>. Afficher dynamiquement les données. Formulaires avec validation côté client.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Sécurité :</strong> hacher les mots de passe (bcrypt), authentification par sessions ou JWT, protection contre les injections SQL (requêtes préparées) et XSS (échappement des entrées).</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text"><strong>Tests & Débogage :</strong> tester les endpoints avec Postman, tester l'interface dans plusieurs navigateurs, corriger les bugs. Rédiger des tests unitaires basiques.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-text"><strong>Déploiement :</strong> héberger sur un VPS (DigitalOcean, Render, ou Railway), configurer un nom de domaine, activer HTTPS avec Let's Encrypt. Votre application est en ligne et accessible au monde entier 🚀</div></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-icon">🏆</div>
+      <div class="mini-project-text">
+        <strong>Projet Final</strong>
+        <span>Créer et déployer une plateforme de blog avec inscription/connexion des utilisateurs, publication d'articles avec éditeur riche, système de commentaires, tableau de bord administrateur, et interface responsive. Présenter le projet avec une démo live et un rapport technique de 5 pages.</span>
+      </div>
+    </div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('informatique',10,9)">← Précédent</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= BUREAUTIQUE ================= -->
+<div id="bureautique" class="formation">
+  <h2>Bureautique <span>6 Modules</span></h2>
+  <div class="module" id="bureautique-module1">
+    <div class="module-header"><div class="module-num">01</div><h3>Introduction à Word</h3></div>
+    <div class="module-desc">Apprenez à créer un document, saisir du texte et utiliser les titres hiérarchisés.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Ouvrir Word et sélectionner un modèle.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Taper du texte et appliquer des styles.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Ajouter titres et sous-titres.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Document simple avec 2 sections et titres.</span></div></div>
+    <div class="module-nav"><button class="next" onclick="nextModule('bureautique',1,2)">Suivant → Module 2</button></div>
+  </div>
+  <div class="module" id="bureautique-module2">
+    <div class="module-header"><div class="module-num">02</div><h3>Tableaux et images</h3></div>
+    <div class="module-desc">Insérez et formatez tableaux et images pour rendre vos documents professionnels.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Créer et modifier un tableau.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Insérer images et ajuster taille/position.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Rapport avec tableau et images.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('bureautique',2,1)">← Précédent</button>
+      <button class="next" onclick="nextModule('bureautique',2,3)">Suivant → Module 3</button>
+    </div>
+  </div>
+  <div class="module" id="bureautique-module3">
+    <div class="module-header"><div class="module-num">03</div><h3>Mise en page</h3></div>
+    <div class="module-desc">Gérer marges, orientation et en-têtes pour un document professionnel.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Définir marges, orientation et format papier.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Ajouter en-têtes, pieds de page et numéros.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Document prêt pour impression.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('bureautique',3,2)">← Précédent</button>
+      <button class="next" onclick="nextModule('bureautique',3,4)">Suivant → Module 4</button>
+    </div>
+  </div>
+  <div class="module" id="bureautique-module4">
+    <div class="module-header"><div class="module-num">04</div><h3>Excel débutant</h3></div>
+    <div class="module-desc">Découvrez les bases d'Excel : saisir données et mettre en forme les tableaux.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Créer un classeur et entrer des données.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Appliquer des formats et styles.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Tableau de suivi de dépenses.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('bureautique',4,3)">← Précédent</button>
+      <button class="next" onclick="nextModule('bureautique',4,5)">Suivant → Module 5</button>
+    </div>
+  </div>
+  <div class="module" id="bureautique-module5">
+    <div class="module-header"><div class="module-num">05</div><h3>Excel avancé</h3></div>
+    <div class="module-desc">Fonctions avancées, formules et graphiques interactifs.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Fonctions <code>SOMME.SI</code>, <code>RECHERCHEV</code>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Tableaux croisés dynamiques et graphiques.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Budget automatisé.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('bureautique',5,4)">← Précédent</button>
+      <button class="next" onclick="nextModule('bureautique',5,6)">Suivant → Module 6</button>
+    </div>
+  </div>
+  <div class="module" id="bureautique-module6">
+    <div class="module-header"><div class="module-num">06</div><h3>Astuces & Productivité</h3></div>
+    <div class="module-desc">Raccourcis, automatisation et conseils pour être efficace.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Raccourcis clavier essentiels.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Automatiser tâches répétitives.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Combiner Word et Excel.</span></div></div>
+    <div class="module-nav"><button class="prev" onclick="prevModule('bureautique',6,5)">← Précédent</button></div>
+  </div>
+</div>
+
+<!-- ================= ROBOTIQUE ================= -->
+<div id="robotique" class="formation">
+  <h2>Robotique <span>6 Modules</span></h2>
+  <div class="module" id="robotique-module1">
+    <div class="module-header"><div class="module-num">01</div><h3>Bases de la robotique</h3></div>
+    <div class="module-desc">Découverte des composants : moteurs, capteurs, actionneurs.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Identifier capteurs et actionneurs.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Présentation des moteurs et contrôleurs.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Assembler un robot simple.</span></div></div>
+    <div class="module-nav"><button class="next" onclick="nextModule('robotique',1,2)">Suivant → Module 2</button></div>
+  </div>
+  <div class="module" id="robotique-module2">
+    <div class="module-header"><div class="module-num">02</div><h3>Électronique</h3></div>
+    <div class="module-desc">Apprendre les circuits et alimentations.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Brancher capteurs et moteurs sur carte.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Tester continuité et alimentation.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Allumer une LED avec un capteur.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('robotique',2,1)">← Précédent</button>
+      <button class="next" onclick="nextModule('robotique',2,3)">Suivant → Module 3</button>
+    </div>
+  </div>
+  <div class="module" id="robotique-module3">
+    <div class="module-header"><div class="module-num">03</div><h3>Programmation Arduino</h3></div>
+    <div class="module-desc">Programmer les robots avec Arduino ou Python.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Contrôler moteurs et capteurs avec <code>digitalWrite</code>.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Robot suiveur de ligne.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('robotique',3,2)">← Précédent</button>
+      <button class="next" onclick="nextModule('robotique',3,4)">Suivant → Module 4</button>
+    </div>
+  </div>
+  <div class="module" id="robotique-module4">
+    <div class="module-header"><div class="module-num">04</div><h3>Automatisation</h3></div>
+    <div class="module-desc">Créer des routines automatiques selon les capteurs.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Programmer actions selon lectures de capteurs.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Robot évitant les obstacles.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('robotique',4,3)">← Précédent</button>
+      <button class="next" onclick="nextModule('robotique',4,5)">Suivant → Module 5</button>
+    </div>
+  </div>
+  <div class="module" id="robotique-module5">
+    <div class="module-header"><div class="module-num">05</div><h3>Capteurs avancés</h3></div>
+    <div class="module-desc">Capteurs ultrasons, infrarouges et communication à distance.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Capteurs ultrasons et infrarouges.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Communication Bluetooth et Wi-Fi.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Robot contrôlable à distance.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('robotique',5,4)">← Précédent</button>
+      <button class="next" onclick="nextModule('robotique',5,6)">Suivant → Module 6</button>
+    </div>
+  </div>
+  <div class="module" id="robotique-module6">
+    <div class="module-header"><div class="module-num">06</div><h3>Projet final</h3></div>
+    <div class="module-desc">Assembler un robot complet avec programmation et capteurs.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Vérifier câblage et composants.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Programmer comportements complets.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🏆</div><div class="mini-project-text"><strong>Projet Final</strong><span>Robot autonome simple.</span></div></div>
+    <div class="module-nav"><button class="prev" onclick="prevModule('robotique',6,5)">← Précédent</button></div>
+  </div>
+</div>
+
+<!-- ================= ANIMATION ================= -->
+<div id="animation" class="formation">
+  <h2>Animation <span>6 Modules</span></h2>
+  <div class="module" id="animation-module1">
+    <div class="module-header"><div class="module-num">01</div><h3>Principes de l'animation</h3></div>
+    <div class="module-desc">Mouvements, poses clés et rythme des animations.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Qu'est-ce qu'une pose clé (keyframe) ?</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Appliquer squash & stretch.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Personnage simple en mouvement.</span></div></div>
+    <div class="module-nav"><button class="next" onclick="nextModule('animation',1,2)">Suivant → Module 2</button></div>
+  </div>
+  <div class="module" id="animation-module2">
+    <div class="module-header"><div class="module-num">02</div><h3>Logiciels d'animation</h3></div>
+    <div class="module-desc">Blender, After Effects ou Toon Boom.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Créer projet et configurer scène.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Importer personnages et objets.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Courte séquence animée.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('animation',2,1)">← Précédent</button>
+      <button class="next" onclick="nextModule('animation',2,3)">Suivant → Module 3</button>
+    </div>
+  </div>
+  <div class="module" id="animation-module3">
+    <div class="module-header"><div class="module-num">03</div><h3>Animation 2D avancée</h3></div>
+    <div class="module-desc">Fluidité et interpolation des poses clés.</div>
+    <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-text">Interpolation des keyframes pour fluidité.</div></div></div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Animation fluide d'un personnage.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('animation',3,2)">← Précédent</button>
+      <button class="next" onclick="nextModule('animation',3,4)">Suivant → Module 4</button>
+    </div>
+  </div>
+  <div class="module" id="animation-module4">
+    <div class="module-header"><div class="module-num">04</div><h3>Effets spéciaux</h3></div>
+    <div class="module-desc">Ajouter effets et textures à vos animations.</div>
+    <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-text">Effets simples et ombres dynamiques.</div></div></div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Personnage avec effets visuels.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('animation',4,3)">← Précédent</button>
+      <button class="next" onclick="nextModule('animation',4,5)">Suivant → Module 5</button>
+    </div>
+  </div>
+  <div class="module" id="animation-module5">
+    <div class="module-header"><div class="module-num">05</div><h3>Animation interactive</h3></div>
+    <div class="module-desc">Personnages qui réagissent à l'utilisateur.</div>
+    <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-text">Créer des interactions simples.</div></div></div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Personnage qui répond aux actions.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('animation',5,4)">← Précédent</button>
+      <button class="next" onclick="nextModule('animation',5,6)">Suivant → Module 6</button>
+    </div>
+  </div>
+  <div class="module" id="animation-module6">
+    <div class="module-header"><div class="module-num">06</div><h3>Projet final</h3></div>
+    <div class="module-desc">Créer une courte animation complète et réaliste.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Storyboard complet.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Animation complète avec sons.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🏆</div><div class="mini-project-text"><strong>Projet Final</strong><span>Séquence animée finale avec son.</span></div></div>
+    <div class="module-nav"><button class="prev" onclick="prevModule('animation',6,5)">← Précédent</button></div>
+  </div>
+</div>
+
+<!-- ================= PROGRAMMATION ================= -->
+<div id="programmation" class="formation">
+  <h2>Programmation <span>6 Modules</span></h2>
+  <div class="module" id="programmation-module1">
+    <div class="module-header"><div class="module-num">01</div><h3>Python Débutant</h3></div>
+    <div class="module-desc">Variables, boucles, conditions et fonctions de base.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Créer un script Python simple.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Calculatrice simple.</span></div></div>
+    <div class="module-nav"><button class="next" onclick="nextModule('programmation',1,2)">Suivant → Module 2</button></div>
+  </div>
+  <div class="module" id="programmation-module2">
+    <div class="module-header"><div class="module-num">02</div><h3>Fonctions avancées</h3></div>
+    <div class="module-desc">Fichiers, modules et bibliothèques Python.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Lire et écrire des fichiers.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Utiliser modules comme <code>math</code>, <code>random</code>.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Application de gestion de tâches.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('programmation',2,1)">← Précédent</button>
+      <button class="next" onclick="nextModule('programmation',2,3)">Suivant → Module 3</button>
+    </div>
+  </div>
+  <div class="module" id="programmation-module3">
+    <div class="module-header"><div class="module-num">03</div><h3>Programmation orientée objet</h3></div>
+    <div class="module-desc">Créer classes et objets pour structurer le code.</div>
+    <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-text">Définir classes et méthodes Python.</div></div></div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Gestion d'une bibliothèque d'objets.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('programmation',3,2)">← Précédent</button>
+      <button class="next" onclick="nextModule('programmation',3,4)">Suivant → Module 4</button>
+    </div>
+  </div>
+  <div class="module" id="programmation-module4">
+    <div class="module-header"><div class="module-num">04</div><h3>Interfaces graphiques</h3></div>
+    <div class="module-desc">Créer des applications avec interface utilisateur.</div>
+    <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-text">Utiliser <code>Tkinter</code> ou <code>PyQt</code>.</div></div></div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Application simple avec boutons et champs.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('programmation',4,3)">← Précédent</button>
+      <button class="next" onclick="nextModule('programmation',4,5)">Suivant → Module 5</button>
+    </div>
+  </div>
+  <div class="module" id="programmation-module5">
+    <div class="module-header"><div class="module-num">05</div><h3>Gestion de données</h3></div>
+    <div class="module-desc">Lire, traiter et visualiser des données.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Fichiers CSV et JSON avec <code>pandas</code>.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Tableau de statistiques automatisé.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('programmation',5,4)">← Précédent</button>
+      <button class="next" onclick="nextModule('programmation',5,6)">Suivant → Module 6</button>
+    </div>
+  </div>
+  <div class="module" id="programmation-module6">
+    <div class="module-header"><div class="module-num">06</div><h3>Projet final</h3></div>
+    <div class="module-desc">Créer une application complète intégrant tous les concepts appris.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Développement complet de l'application.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Tests et validation.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🏆</div><div class="mini-project-text"><strong>Projet Final</strong><span>Application fonctionnelle finale.</span></div></div>
+    <div class="module-nav"><button class="prev" onclick="prevModule('programmation',6,5)">← Précédent</button></div>
+  </div>
+</div>
+
+<!-- ================= DESIGN ================= -->
+<div id="design" class="formation">
+  <h2>Design <span>6 Modules</span></h2>
+  <div class="module" id="design-module1">
+    <div class="module-header"><div class="module-num">01</div><h3>Bases du design</h3></div>
+    <div class="module-desc">Couleurs, typographie, composition.</div>
+    <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-text">Théorie des couleurs et harmonies chromatiques.</div></div></div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Création d'une palette de couleurs.</span></div></div>
+    <div class="module-nav"><button class="next" onclick="nextModule('design',1,2)">Suivant → Module 2</button></div>
+  </div>
+  <div class="module" id="design-module2">
+    <div class="module-header"><div class="module-num">02</div><h3>Logiciels de design</h3></div>
+    <div class="module-desc">Photoshop, Illustrator, Figma.</div>
+    <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-text">Découverte des outils et menus principaux.</div></div></div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Créer une affiche simple.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('design',2,1)">← Précédent</button>
+      <button class="next" onclick="nextModule('design',2,3)">Suivant → Module 3</button>
+    </div>
+  </div>
+  <div class="module" id="design-module3">
+    <div class="module-header"><div class="module-num">03</div><h3>Composition graphique</h3></div>
+    <div class="module-desc">Mise en page, équilibre visuel, hiérarchie.</div>
+    <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-text">Organiser les éléments sur un support.</div></div></div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Flyer complet.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('design',3,2)">← Précédent</button>
+      <button class="next" onclick="nextModule('design',3,4)">Suivant → Module 4</button>
+    </div>
+  </div>
+  <div class="module" id="design-module4">
+    <div class="module-header"><div class="module-num">04</div><h3>Design web</h3></div>
+    <div class="module-desc">Création d'interfaces et expérience utilisateur.</div>
+    <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-text">Principes UX/UI fondamentaux.</div></div></div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Maquette d'un site web simple.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('design',4,3)">← Précédent</button>
+      <button class="next" onclick="nextModule('design',4,5)">Suivant → Module 5</button>
+    </div>
+  </div>
+  <div class="module" id="design-module5">
+    <div class="module-header"><div class="module-num">05</div><h3>Design interactif</h3></div>
+    <div class="module-desc">Animations et interactions pour le web ou app.</div>
+    <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-text">Ajouter animations simples et transitions.</div></div></div>
+    <div class="mini-project"><div class="mini-project-icon">🎯</div><div class="mini-project-text"><strong>Mini-Projet</strong><span>Prototype interactif.</span></div></div>
+    <div class="module-nav">
+      <button class="prev" onclick="prevModule('design',5,4)">← Précédent</button>
+      <button class="next" onclick="nextModule('design',5,6)">Suivant → Module 6</button>
+    </div>
+  </div>
+  <div class="module" id="design-module6">
+    <div class="module-header"><div class="module-num">06</div><h3>Projet final</h3></div>
+    <div class="module-desc">Créer un projet complet intégrant tous les concepts appris.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Storyboard, composition, couleurs, typographie.</div></div>
+    </div>
+    <div class="mini-project"><div class="mini-project-icon">🏆</div><div class="mini-project-text"><strong>Projet Final</strong><span>Projet final prêt à présenter.</span></div></div>
+    <div class="module-nav"><button class="prev" onclick="prevModule('design',6,5)">← Précédent</button></div>
+  </div>
+</div>
+
+<!-- ================= COMMENTAIRES ================= -->
+<div id="commentaire" class="formation">
+  <h2>Commentaires <span>Votre avis</span></h2>
+  <form onsubmit="submitComment(event)">
+    <textarea id="userComment" rows="5" placeholder="Écrivez votre commentaire ici..."></textarea>
+    <input type="submit" value="Envoyer le commentaire">
+  </form>
+  <div id="commentResult"></div>
+</div>
+
+<footer>
+  &copy; 2026 COMOREA – Tous droits réservés &nbsp;|&nbsp; Contact : <a href="mailto:paul178paul@gmail.com">paul178paul@gmail.com</a>
+</footer>
+
+<script>
+const moduleCounts = {
+  informatique: 10,
+  bureautique: 6,
+  robotique: 6,
+  animation: 6,
+  programmation: 6,
+  design: 6
+};
+
+function showFormation(id, el) {
+  document.querySelectorAll('.formation').forEach(f => f.style.display = 'none');
+  document.querySelectorAll('.activity').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).style.display = 'block';
+  if (el) el.classList.add('active');
+  const modules = document.querySelectorAll(`#${id} .module`);
+  modules.forEach(m => m.style.display = 'none');
+  if (modules.length > 0) modules[0].style.display = 'block';
+  updateProgress(id, 1);
+  window.scrollTo({top: document.querySelector('.activities').offsetTop - 20, behavior: 'smooth'});
+}
+
+function nextModule(activityId, current, next) {
+  document.getElementById(`${activityId}-module${current}`).style.display = 'none';
+  document.getElementById(`${activityId}-module${next}`).style.display = 'block';
+  updateProgress(activityId, next);
+  window.scrollTo({top: document.getElementById(activityId).offsetTop - 20, behavior: 'smooth'});
+}
+
+function prevModule(activityId, current, prev) {
+  document.getElementById(`${activityId}-module${current}`).style.display = 'none';
+  document.getElementById(`${activityId}-module${prev}`).style.display = 'block';
+  updateProgress(activityId, prev);
+  window.scrollTo({top: document.getElementById(activityId).offsetTop - 20, behavior: 'smooth'});
+}
+
+function updateProgress(id, current) {
+  const total = moduleCounts[id];
+  if (!total) return;
+  const fill = document.getElementById(`${id}-progress`);
+  const label = document.getElementById(`${id}-progress-label`);
+  if (fill) fill.style.width = ((current / total) * 100) + '%';
+  if (label) label.textContent = `Module ${current} / ${total}`;
+}
+
+function submitComment(e) {
+  e.preventDefault();
+  const c = document.getElementById('userComment').value;
+  if (c.trim() === '') { alert('Écrivez un commentaire'); return; }
+  document.getElementById('commentResult').innerText = "✓ Merci pour votre commentaire ! Nous l'avons bien reçu.";
+  document.getElementById('userComment').value = '';
+}
+</script>
+</body>
+</html>
